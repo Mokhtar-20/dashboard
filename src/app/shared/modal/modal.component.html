@@ -1,1 +1,21 @@
-<p>modal works!</p>
+<div class="modal-wrap py-5">
+    <div class="modal-head p-3 pb-0 d-flex justify-content-end">
+        <div class="btn-close pointer" (click)="close()">
+        </div>
+    </div>
+    <div class="header d-flex flex-column text-center">
+      <h2 class="title">{{title}}
+      </h2>
+      <p class="description mb-0">{{Description}}</p>
+    </div>
+    <div class="mt-5">
+      <div class="d-flex justify-content-center align-items-center">  
+        <button id="deleteSubmit" [disabled]="isSubmit" (click)="submit()" class="btn me-3 colord">
+          <div *ngIf="isSubmit" class="spinner-border me-2 text-light" role="status">
+          </div>
+          {{action}}
+        </button>
+        <button class="btn cancel" (click)="close()">Cancel</button>
+      </div>
+    </div>
+</div>

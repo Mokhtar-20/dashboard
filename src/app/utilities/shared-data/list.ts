@@ -5,6 +5,7 @@ export const tablesData = {
         hasAddButton: true,
         add_title: 'Add User',
         edit_title: 'Edit User',
+        delete_title: 'delete this User',
         titles:['', 'image', 'name', 'email', 'phone', 'actions',''],
         column:['sort', 'avatar', 'name', 'email', 'phone', 'editPage','delete'],
     },
@@ -14,6 +15,7 @@ export const tablesData = {
         hasAddButton: true,
         edit_title: 'Edit Product',
         add_title: 'Add Product',
+        delete_title: 'delete this Product',
         titles:['', 'image', 'title', 'price', 'description', 'actions',''],
         column:['sort', 'image', 'name', 'price', 'description', 'editPage','delete'],
     }

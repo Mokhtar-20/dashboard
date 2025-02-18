@@ -1,0 +1,27 @@
+@import 'src/assets/styles/variables';
+
+
+.colord{
+    background-color: $active_item;
+    color: #FFFF;
+}
+
+.cancel{
+    background-color: $background;
+    color: $error;
+}
+.modal-head {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+.header {
+    .title {
+        font-size: $font-32;
+        font-weight: 500;
+    }
+    .description {
+        font-size: $font-16;
+        font-weight: 400;
+    }
+}

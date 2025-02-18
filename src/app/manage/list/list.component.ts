@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subscription } from 'rxjs';
+import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { GetService } from 'src/app/utilities/services/get.service';
 import { tablesData } from 'src/app/utilities/shared-data/list';
 import { URLs } from 'src/app/utilities/shared-data/urls';
@@ -22,7 +24,7 @@ export class ListComponent implements OnInit {
   loading = false;
   routeSubscription: Subscription = new Subscription();
   listSubscriptions: Subscription = new Subscription();
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService) {
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService, private _modalService : NzModalService) {
     this._activatedRoute.params.subscribe(
       (param) => {
         this.type = param['type'];
@@ -59,5 +61,32 @@ export class ListComponent implements OnInit {
         this.loading = false;
       }, 500);
     }))
+  }
+
+  deleteItem(id: any) { 
+    const removeElement = this._modalService.success({
+      nzContent: ModalComponent,
+      nzTitle: '',
+      nzFooter: '',
+      nzIconType: '',
+      nzWidth: 450,
+      nzClosable: false,
+      nzCentered: true,
+      nzComponentParams: {
+        pathValue: 'delete',
+        title: 'Delete',
+        id: id,
+        EndPoint: this.url,
+        Description: `Are you Sure you want to ${this.contentData?.delete_title} ?`,
+        action: 'Delete'
+      }
+    })
+    removeElement.afterClose.subscribe(
+      res => {
+        if(res) {
+          this.getListData();
+        }
+      }
+    )
   }
 }

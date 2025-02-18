@@ -7,5 +7,20 @@ body {
     padding: 0;
     font-family: $font-body;
     overflow-x: hidden;
-  }
+}
   
+.ant-modal-confirm .ant-modal-confirm-btns {
+    display: none;
+}
+
+.ant-modal-confirm-body>.anticon+.ant-modal-confirm-title+.ant-modal-confirm-content {
+  margin: 0;
+}
+
+.ant-modal-confirm-info .ant-modal-confirm-body>.anticon {
+display: none;
+}
+
+.ant-modal-confirm .ant-modal-body {
+  padding: 0;
+}
