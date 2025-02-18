@@ -1,1 +1,15 @@
-<p>sidenav works!</p>
+<div class="sidebar" id="sidenav">
+    <div class="sidenav_content">
+        <h5 class="admin text-center mb-0">Admin Tools</h5>
+        <ul class="nav-list mt-3 p-0">
+            <li class="list-item" *ngFor="let data of sideNavData; let i = index">
+                <a class="p-3" [routerLink]="data.route" routerLinkActive="active" *ngIf="!data.logOut">
+                    <i [class]="'bi '+data.icon"></i>
+                    <span class="ms-2">
+                        {{data.title}}
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

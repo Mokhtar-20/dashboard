@@ -1,0 +1,42 @@
+@import 'src/assets/styles/variables';
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 285px;
+    height: 100%;
+    background: $background;
+    z-index: 99;
+    transition: $transitionFast;
+    border-right: #CCCCCC35 2px solid;
+    overflow: auto;
+    .sidenav_content {
+        height: 90%;
+        margin-top: 10%;
+        overflow-y: auto;
+        .admin {
+            font-size: $font-16;
+            font-weight: 500;
+        }
+        .nav-list {
+            .list-item {
+                list-style: none;
+                padding: 12px 15px;
+                a {
+                    transition: all 0.3s ease-in-out;
+                    border-radius: 10px;
+                    text-align: center;
+                    display: flex;
+                    align-items: center;
+                    color: $Sec_text_colour;
+                    text-decoration: none;
+                    font-size: $font-18;
+                    &.active {
+                        background-color: $gray;
+                    }
+                }
+            }
+        }  
+    }
+}
