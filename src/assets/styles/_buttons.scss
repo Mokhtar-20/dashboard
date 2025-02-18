@@ -1,7 +1,7 @@
 @import "./variables";
 
 .btn_primary {
-    background-color: $darkGray;
+    background-color: $active_item;
     border-radius: 5px;
     padding: 0.5rem 1.25rem;
     color: $white;
@@ -14,8 +14,9 @@
   
     &:hover,
     &.active {
-      background-color: $active_item;
-      border-color: $active_item;
+      background-color: $Hover_item;
+      color: $white;
+      border-color: $Hover_item;
     }
   }
 
