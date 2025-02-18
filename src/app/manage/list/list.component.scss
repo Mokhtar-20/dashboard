@@ -1,0 +1,9 @@
+@import 'src/assets/styles/variables';
+
+.container-table {
+    .page-title {
+        font-size: $font-24;
+        font-weight: 600;
+        color: $titles_Headers;
+    }
+}

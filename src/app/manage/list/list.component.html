@@ -1,1 +1,12 @@
-<p>list works!</p>
+<section class="container-table">
+    <div class="d-flex align-items-center justify-content-between mb-4">
+        <div *ngIf="contentData.hasTitle">
+            <h1 class="page-title mb-0"> {{contentData?.title}}</h1>
+        </div>
+        <div>
+            <button class="btn_primary" *ngIf="contentData?.hasAddButton">
+                {{contentData.add_title}} 
+            </button>
+        </div>
+    </div>
+</section>
