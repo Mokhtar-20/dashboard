@@ -31,3 +31,19 @@
   width: 95%;
   margin: auto;
 }
+
+.delete {
+  color: $Sec_text_colour;
+  // background-color: $background;
+  border-radius: 25px;
+  width: fit-content;
+  cursor: pointer;
+  .bi {
+    transition: $transitionFast;
+  }
+  &:hover {
+    .bi {
+      color: $error;
+    }
+  }
+}

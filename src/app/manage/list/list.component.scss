@@ -6,4 +6,13 @@
         font-weight: 600;
         color: $titles_Headers;
     }
+    .avatar {
+        width: 4rem;
+        border-radius: 50%;
+        overflow: hidden;
+        height: 4rem;
+    }
+    .img-team {
+        width: 7rem;
+    }
 }
