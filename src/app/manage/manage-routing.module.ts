@@ -5,6 +5,7 @@ import { ListComponent } from './list/list.component';
 
 const routes: Routes = [
   {path: '', component: ManageComponent, children: [
+    { path: '', redirectTo: 'users', pathMatch: 'full' },
     { path: ':type', component: ListComponent },
   ]}
 ];
