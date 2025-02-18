@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ManageRoutingModule } from './manage-routing.module';
 import { ManageComponent } from './manage.component';
 import { ListComponent } from './list/list.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { ListComponent } from './list/list.component';
   ],
   imports: [
     CommonModule,
-    ManageRoutingModule
+    ManageRoutingModule,
+    SharedModule
   ]
 })
 export class ManageModule { }

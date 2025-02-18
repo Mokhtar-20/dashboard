@@ -10,3 +10,24 @@
       object-fit: contain;
     }
 }
+
+.container-layout {
+  position: relative;
+  background-color: $white;
+  min-height: 100vh;
+  top: 0;
+  left: 285px;
+  width: calc(100% - 285px);
+  transition: $transitionFast;
+  z-index: 2;
+}
+
+.main-content {
+  min-height: 80vh;
+  background-color: $white;
+}
+
+.container-page {
+  width: 95%;
+  margin: auto;
+}
