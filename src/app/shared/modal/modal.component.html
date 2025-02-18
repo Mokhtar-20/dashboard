@@ -4,18 +4,18 @@
         </div>
     </div>
     <div class="header d-flex flex-column text-center">
-      <h2 class="title">{{title}}
+      <h2 class="title mb-0">{{title}}
       </h2>
       <p class="description mb-0">{{Description}}</p>
     </div>
-    <div class="mt-5">
+    <div class="mt-4">
       <div class="d-flex justify-content-center align-items-center">  
-        <button id="deleteSubmit" [disabled]="isSubmit" (click)="submit()" class="btn me-3 colord">
+        <button id="deleteSubmit" [disabled]="isSubmit" (click)="submit()" class="btn me-3 px-4 color">
           <div *ngIf="isSubmit" class="spinner-border me-2 text-light" role="status">
           </div>
           {{action}}
         </button>
-        <button class="btn cancel" (click)="close()">Cancel</button>
+        <button class="btn cancel px-4" (click)="close()">Cancel</button>
       </div>
     </div>
 </div>
