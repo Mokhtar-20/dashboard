@@ -1,0 +1,39 @@
+/* color palette */
+$white: #FFFFFF;
+$darkGray: #667085;
+$active_item: #1B1B1B;
+$gray: #D0D5DD;
+$Hover_item :#7C7C7B;
+$titles_Headers: #4D4D4D;
+$Sec_text_colour:#3D3D3D;
+$activeItem: #F1F1F1;
+$background: #F9F9F9;
+$disabled : #CCCCCC;
+$error:#C62828;
+$success: #1FAA00;
+
+/* fonts*/
+$font-body:"SF UI Display";
+
+/* Transitions*/
+$transitionFast: all 0.3s ease-in-out;
+$transitionSlow: all 0.6s ease-in-out;
+
+/* Font Sizes */
+$font-12: 12px;
+$font-14: 14px;
+$font-16: 16px;
+$font-18: 18px;
+$font-24: 24px;
+$font-32: 32px;
+$font-40: 40px;
+$font-48: 48px;
+
+/*Font Family*/
+@font-face {
+    font-family: "SF UI Display";
+    src: url("../fonts/SFUIDisplay-Regular.eot");
+    src: url("../fonts/SFUIDisplay-Regular.woff") format("woff"),
+      url("../fonts/SFUIDisplay-Regular.otf") format("opentype"),
+      url("../fonts/SFUIDisplay-Regular.svg") format("svg");
+  }
