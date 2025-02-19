@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -11,7 +11,11 @@ export class PostService {
   constructor(private _httpClient: HttpClient) { }
   
   submit(url: string, formData?: any): Observable<any> {
-    return this._httpClient.post<any>(this.apiURL + url, formData).pipe(
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    });
+    return this._httpClient.post<any>(this.apiURL + url, formData, { headers: headers }).pipe(
       (data) => data,
       (error) => error
     );
