@@ -105,8 +105,10 @@ export class AddComponent {
           break;
         }
       }
-      this.addSubscriptions = this._postService.submit(this.url, this.formData).subscribe((res)=> {
-        console.log(res)
+      let body = JSON.stringify(this.formData);
+      console.log(body);
+      this.addSubscriptions = this._postService.submit(this.url, body).subscribe((res)=> {
+        console.log(res);
         // this.spinner.hide();
         // this._router.navigate([this.contentData.backLink]); 
       }, 
