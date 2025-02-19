@@ -12,14 +12,16 @@
     border-right: #CCCCCC35 2px solid;
     overflow: auto;
     .sidenav_content {
-        height: 90%;
-        margin-top: 10%;
+        height: calc(100vh - 2rem);
+        margin-top: 2rem;
         overflow-y: auto;
         .admin {
             font-size: $font-16;
             font-weight: 500;
         }
         .nav-list {
+            position: relative;
+            height: calc(100vh - 5.5rem);
             .list-item {
                 list-style: none;
                 padding: 5px 15px;
@@ -34,6 +36,17 @@
                     font-size: $font-18;
                     &.active {
                         background-color: $gray;
+                    }
+                }
+                &.logOut {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    a {
+                        color: $error;
+                        &:hover {
+                            background-color: #f3333342;
+                        }
                     }
                 }
             }

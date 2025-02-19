@@ -12,5 +12,11 @@ export const sidenavList = {
             route: '/manage/products', 
             logOut: false,
         },
+        {
+            icon: 'bi-door-closed-fill',
+            title: 'Log Out',
+            isDropDown: false,
+            logOut: true,   
+        }
     ]
 }

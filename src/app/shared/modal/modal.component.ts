@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { NzModalRef } from 'ng-zorro-antd/modal';
+import { AuthService } from 'src/app/utilities/services/auth.service';
 import { DeleteService } from 'src/app/utilities/services/delete.service';
 
 @Component({
@@ -17,22 +18,22 @@ export class ModalComponent {
   @Input() EndPoint!: any;
   isSubmit: boolean = false;
 
-  constructor(private modalRef: NzModalRef, private router: Router, private deleteService: DeleteService ){}
+  constructor(private _modalRef: NzModalRef, private _router: Router, private _deleteService: DeleteService,  private _authService: AuthService ){}
   close() {
-    this.modalRef.close(false);
+    this._modalRef.close(false);
   }
 
   submit() {
     switch(this.pathValue) {
       case "logOut":
-        // this.auth.logout();
-        this.modalRef.close(false);
+        this._authService.logout();
+        this._modalRef.close(false);
         // this.router.navigate(['/'])
       break;
       case "delete":
         // console.log("delete"+this.id);
-        this.deleteService.delete(this.EndPoint, this.id).subscribe((del) => { })
-        this.modalRef.close(true);
+        this._deleteService.delete(this.EndPoint, this.id).subscribe((del) => { })
+        this._modalRef.close(true);
         break;
         default:
           console.log('someThing went wrong')
