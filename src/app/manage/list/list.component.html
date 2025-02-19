@@ -4,13 +4,13 @@
             <h1 class="page-title mb-0"> {{contentData?.title}}</h1>
         </div>
         <div>
-            <button class="btn_primary" *ngIf="contentData?.hasAddButton">
+            <button class="btn_primary" *ngIf="contentData?.hasAddButton" [routerLink]="'/manage/add/'+type">
                 {{contentData.add_title}} 
             </button>
         </div>
     </div>
 
-    <nz-table #rowSelectionTable [nzLoading]="loading" [nzFrontPagination]="false" [nzData]="listOfData"
+    <nz-table #rowSelectionTable  [nzLoading]="loading" [nzFrontPagination]="false" [nzData]="listOfData"
     [nzHideOnSinglePage]="true">
         <thead>
             <tr>
@@ -41,11 +41,14 @@
                     </div>
 
                     <div *ngSwitchCase="'description'">
-                        {{data[element].length > 50 ? (data[element] | slice:0:50)+'...' : data[element]}}
+                        {{data[element]?.length > 50 ? (data[element] | slice:0:50)+'...' : data[element]}}
+                    </div>
+                    <div *ngSwitchCase="'address'">
+                        {{data[element]?.street}}, {{data[element]?.city}}
                     </div>
 
                     <div *ngSwitchCase="'editPage'">
-                        <button class="btn_secondary">
+                        <button class="btn_secondary"  [routerLink]="['/manage/edit/'+type+'/'+data.id]">
                             {{contentData.edit_title}}
                         </button>
                     </div>
