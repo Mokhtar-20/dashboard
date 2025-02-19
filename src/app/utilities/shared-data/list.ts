@@ -6,6 +6,7 @@ export const tablesData = {
         add_title: 'Add User',
         edit_title: 'Edit User',
         delete_title: 'delete this User',
+        massage: 'User deleted successfully.',
         titles:['', 'image', 'name', 'email', 'phone', 'actions',''],
         column:['sort', 'avatar', 'name', 'email', 'phone', 'editPage','delete'],
     },
@@ -16,6 +17,7 @@ export const tablesData = {
         edit_title: 'Edit Product',
         add_title: 'Add Product',
         delete_title: 'delete this Product',
+        massage: 'Product deleted successfully.',
         titles:['', 'image', 'title', 'price', 'description', 'actions',''],
         column:['sort', 'image', 'name', 'price', 'description', 'editPage','delete'],
     }

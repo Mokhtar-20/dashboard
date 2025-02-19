@@ -7,6 +7,7 @@ import { NzSwitchModule } from 'ng-zorro-antd/switch';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
   exports: [
@@ -16,7 +17,8 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
     NzSwitchModule,
     NzModalModule,
     NzSelectModule,
-    NzDatePickerModule  
+    NzDatePickerModule,
+    NzMessageModule 
   ],
   providers: [
     {

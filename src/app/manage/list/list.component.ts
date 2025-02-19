@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subscription } from 'rxjs';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
@@ -24,7 +25,7 @@ export class ListComponent implements OnInit {
   loading = false;
   routeSubscription: Subscription = new Subscription();
   listSubscriptions: Subscription = new Subscription();
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService, private _modalService : NzModalService) {
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService, private _modalService : NzModalService, private _message: NzMessageService) {
     this._activatedRoute.params.subscribe(
       (param) => {
         this.type = param['type'];
@@ -42,7 +43,7 @@ export class ListComponent implements OnInit {
     this.apiUrl = URLs;
     this.url = this.apiUrl[this.type];
     this.getListData();
-    
+
     // Subscribe to router events to handle navigation changes
     this.routeSubscription = this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -85,6 +86,7 @@ export class ListComponent implements OnInit {
       res => {
         if(res) {
           this.getListData();
+          this._message.create('success', `${this.contentData?.massage}`, { nzDuration: 2000 });
         }
       }
     )
