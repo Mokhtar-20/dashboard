@@ -1,0 +1,25 @@
+@import 'src/assets/styles/variables';
+
+
+.login {
+    height: 100vh;
+    .auth-title {
+        font-size: $font-32;
+        font-weight: 500;
+    }
+    .password-input {
+        position: relative;
+        width: 100%;
+        .toggle {
+          position: absolute;
+          right: 10px;
+          cursor: pointer;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 1rem;
+        }
+      }
+    .background-img {
+        height: 100%;
+    }
+}

@@ -29,3 +29,33 @@ display: none;
   vertical-align: 0;
   top: 0;
 }
+
+.custom_input {
+  border: 1px solid $darkGray;
+  border-radius: 8px;
+  color: $Sec_text_colour;
+  background-color: $white;
+  padding: 0.7rem 0.5rem;
+  width: 100%;
+  &::placeholder {
+    color: $darkGray;
+  }
+
+  &:focus-visible {
+    border: 1px solid $active_item;
+    color: $Sec_text_colour;
+  }
+
+  &.disabled {
+    pointer-events: none;
+  }
+}
+
+input.ng-touched.ng-invalid
+{
+  border: 1px solid $error;
+  color: $error;
+}
+.clr-error {
+  color: $error;
+}

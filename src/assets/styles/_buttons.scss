@@ -1,5 +1,25 @@
 @import "./variables";
 
+.main-btn {
+  //   all: unset;
+    border-radius: 8px;
+    padding: 0.8rem 1rem;
+    background-color: $blue;
+    box-shadow: none;
+    border: none;
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 1px 2px 0rem rgb(16 24 40 / 5%);
+    span {
+        color: $white;
+    }
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+  }
+  
+
 .btn_primary {
     background-color: $active_item;
     border-radius: 5px;
