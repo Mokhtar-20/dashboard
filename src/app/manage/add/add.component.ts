@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PostService } from 'src/app/utilities/services/post.service';
 import { addFormFields } from 'src/app/utilities/shared-data/addFormData';
@@ -27,7 +27,7 @@ export class AddComponent {
   imageSizeError: any = new Map();
   imgToUpload: any = null;
   addSubscriptions : Subscription = new Subscription();
-  constructor(private _activatedRoute : ActivatedRoute, private _postService: PostService) {
+  constructor(private _activatedRoute : ActivatedRoute, private _postService: PostService, private _router: Router) {
     this._activatedRoute.params.subscribe(
       (param) => {
         this.type = param['type'];
@@ -105,12 +105,10 @@ export class AddComponent {
           break;
         }
       }
-      let body = JSON.stringify(this.formData);
-      console.log(body);
-      this.addSubscriptions = this._postService.submit(this.url, body).subscribe((res)=> {
+      this.addSubscriptions = this._postService.submit(this.url, this.formData).subscribe((res)=> {
         console.log(res);
         // this.spinner.hide();
-        // this._router.navigate([this.contentData.backLink]); 
+        this._router.navigate([this.contentData.backLink]); 
       }, 
       (err) => {
         // this.spinner.hide();

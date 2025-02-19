@@ -15,7 +15,10 @@ export class PostService {
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     });
-    return this._httpClient.post<any>(this.apiURL + url, formData, { headers: headers }).pipe(
+    let object: any = {};
+    formData.forEach((value: any, key: any) => object[key] = value);
+    const body = JSON.stringify(object);
+    return this._httpClient.post<any>(this.apiURL + url, body, { headers: headers }).pipe(
       (data) => data,
       (error) => error
     );
