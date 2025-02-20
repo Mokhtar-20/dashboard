@@ -54,11 +54,14 @@ export class AddComponent {
       } else {
         is_required = null
       }
+      this.fieldsCtrls[f.name] = new FormControl(f.value || '', is_required);
       if (f.type == 'file') {
         this.imageSrc[f.name] = f.value;
         this.imageSizeError[f.name] = false;
       }
-      this.fieldsCtrls[f.name] = new FormControl(f.value || '', is_required);
+      if (f.name == 'email' ) {
+        this.fieldsCtrls[f.name] = new FormControl(f.value || '',[Validators.required, Validators.pattern('^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}$')])
+      }
     }
   }
 
@@ -70,7 +73,7 @@ export class AddComponent {
     let fileSize;
     const file: File = event.target.files[0];
     fileSize = Math.round(file.size / 1024);
-    let vaildSize = fileSize <= 9216;
+    let vaildSize = fileSize <= 50;
 
     const reader = new FileReader();
 
@@ -79,7 +82,8 @@ export class AddComponent {
       reader.onload = () => {
         this.imageSrc[fieldName] = reader.result as string;
       };
-      this.imgToUpload = file;
+      console.log(file);
+      console.log(fileSize);
     } else {
       this.imageSizeError[fieldName] = true;
     }
@@ -93,8 +97,8 @@ export class AddComponent {
       for (let f of fields) {
         switch (f.type) {
           case 'file':
-            if(this.imgToUpload != null) {
-              this.formData.set(f.name, this.imgToUpload);
+            if(this.imageSrc != '') {
+              this.formData.set(f.name, this.imageSrc[f.name]);
             }
           break;
           default:

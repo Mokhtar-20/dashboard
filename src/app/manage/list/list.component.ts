@@ -23,8 +23,12 @@ export class ListComponent implements OnInit {
   url: any;
   listOfData!: any[];
   loading = false;
+  pageIndex!: number;
+  pageSize!: number;
+  totalTableElms!: number;
   routeSubscription: Subscription = new Subscription();
   listSubscriptions: Subscription = new Subscription();
+  totalTableSubscriptions: Subscription = new Subscription();
   constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService, private _modalService : NzModalService, private _message: NzMessageService) {
     this._activatedRoute.params.subscribe(
       (param) => {
@@ -32,7 +36,8 @@ export class ListComponent implements OnInit {
         // console.log(this.type)
       }
     );
-
+    this.pageIndex = 1;
+    this.pageSize = 10;
   }
 
   ngOnInit(): void {
@@ -42,8 +47,8 @@ export class ListComponent implements OnInit {
     this.tableColumn = this.contentData?.column;
     this.apiUrl = URLs;
     this.url = this.apiUrl[this.type];
+    this.getTotalTableElms();
     this.getListData();
-
     // Subscribe to router events to handle navigation changes
     this.routeSubscription = this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -53,9 +58,18 @@ export class ListComponent implements OnInit {
     })
   }
 
-  getListData() {
+  getTotalTableElms() {
+    this.totalTableSubscriptions.add(this._getService.get(this.url).subscribe((data) => {
+      this.totalTableElms = data.length;
+    }))
+  }
+
+  getListData(e?:any) {
     this.loading = true;
-    this.listSubscriptions.add(this._getService.get(this.url).subscribe((data) => {
+    if (e) {
+      this.pageIndex = e ;
+    }
+    this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}`).subscribe((data) => {
       console.log(data);
       this.listOfData = data;
       setTimeout(() => {

@@ -22,7 +22,7 @@ export const tablesData = {
         backLink: '/manage/users',
         delete_title: 'delete this Product',
         massage: 'Product deleted successfully.',
-        titles:['', 'image', 'title', 'price', 'description', 'actions',''],
+        titles:['', 'image', 'Product name', 'price', 'description', 'actions',''],
         column:['sort', 'image', 'name', 'price', 'description', 'editPage','delete'],
     }
 }

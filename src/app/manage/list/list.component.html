@@ -10,8 +10,8 @@
         </div>
     </div>
 
-    <nz-table #rowSelectionTable  [nzLoading]="loading" [nzFrontPagination]="false" [nzData]="listOfData"
-    [nzHideOnSinglePage]="true">
+    <nz-table #rowSelectionTable [nzPageIndex]="pageIndex" [nzTotal]="totalTableElms" [nzLoading]="loading" [nzPageSize]="pageSize" [nzFrontPagination]="false" [nzData]="listOfData"
+    [nzHideOnSinglePage]="true" (nzPageIndexChange)="getListData($event)">
         <thead>
             <tr>
             <th class="text-uppercase" *ngFor="let item of tableTitles">{{item}}</th>

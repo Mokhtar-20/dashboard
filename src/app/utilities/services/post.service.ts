@@ -13,7 +13,6 @@ export class PostService {
   submit(url: string, formData?: any): Observable<any> {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Accept': 'application/json',
     });
     let object: any = {};
     formData.forEach((value: any, key: any) => object[key] = value);
