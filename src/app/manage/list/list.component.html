@@ -11,7 +11,7 @@
     </div>
 
     <nz-table #rowSelectionTable [nzPageIndex]="pageIndex" [nzTotal]="totalTableElms" [nzLoading]="loading" [nzPageSize]="pageSize" [nzFrontPagination]="false" [nzData]="listOfData"
-    [nzHideOnSinglePage]="true" (nzPageIndexChange)="getListData($event)">
+    [nzHideOnSinglePage]="true" (nzPageIndexChange)="getListData($event)" *ngIf="!searchError">
         <thead>
             <tr>
             <th class="text-uppercase" *ngFor="let item of tableTitles">{{item}}</th>
@@ -62,4 +62,7 @@
             </tr>
         </tbody>
     </nz-table>
+    <div class="d-flex justify-content-center">
+        <h3 class="mb-0" *ngIf="searchError">Not Found</h3>
+    </div>
 </section>

@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   pageIndex!: number;
   pageSize!: number;
   totalTableElms!: number;
+  searchError: boolean = false;
   routeSubscription: Subscription = new Subscription();
   listSubscriptions: Subscription = new Subscription();
   totalTableSubscriptions: Subscription = new Subscription();
@@ -85,9 +86,12 @@ export class ListComponent implements OnInit {
       this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}&search=${search}`).subscribe((data) => {
         console.log(data);
         this.listOfData = data;
+        this.searchError = false;
         setTimeout(() => {
           this.loading = false;
         }, 500);
+      }, (err) => {
+        this.searchError = true;
       }))
     } else {
       this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}`).subscribe((data) => {
