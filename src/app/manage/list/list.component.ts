@@ -36,8 +36,6 @@ export class ListComponent implements OnInit {
         // console.log(this.type)
       }
     );
-    this.pageIndex = 1;
-    this.pageSize = 10;
   }
 
   ngOnInit(): void {
@@ -47,6 +45,8 @@ export class ListComponent implements OnInit {
     this.tableColumn = this.contentData?.column;
     this.apiUrl = URLs;
     this.url = this.apiUrl[this.type];
+    this.pageIndex = 1;
+    this.pageSize = 10;
     this.getTotalTableElms();
     this.getListData();
     // Subscribe to router events to handle navigation changes

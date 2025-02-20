@@ -19,7 +19,7 @@ export const tablesData = {
         edit_title: 'Edit Product',
         add_title: 'Add Product',
         hasBackLink: true,
-        backLink: '/manage/users',
+        backLink: '/manage/products',
         delete_title: 'delete this Product',
         massage: 'Product deleted successfully.',
         titles:['', 'image', 'Product name', 'price', 'description', 'actions',''],
