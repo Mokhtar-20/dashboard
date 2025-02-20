@@ -1,1 +1,50 @@
-<p>edit works!</p>
+<section class="container-table">
+    <div class='row'>
+        <div class="col-6">
+            <h1 class="mb-0 page-title">{{ contentData?.edit_title }}</h1>
+        </div>
+        <div class="col-6">
+            <div class="text-end">
+              <button class="btn_primary mb-3" [routerLink]="[contentData?.backLink]" *ngIf="contentData?.hasBackLink">
+                Back
+              </button>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="container-table my-3">
+    <form [formGroup]="mainForm" class="py-3">
+        <div class="form-group">
+            <div class="row pe-lg-5">
+                <div class="field col-md-6 mb-5" *ngFor="let field of edit_form; let i = index">
+                    <label class="form-control-label mb-1" [attr.for]="field.label">
+                        {{ field.label }}<span *ngIf="field.required" class="clr-error">*</span> 
+                    </label>
+                    <div [ngSwitch]="field.type">
+                        <div class="w-100" appearance="outline"  *ngSwitchDefault>
+                            <input class="custom_input" placeholder="" type="{{field.type}}" formControlName="{{field.name}}" />
+                        </div>
+
+                        <div class="img-field" *ngSwitchCase="'file'">
+                            <input type="file" (change)="upload($event, field.name)" hidden
+                            id="{{field.name+'-field'}}" accept="image/png, image/gif, image/jpeg, image/webp" />
+                            <div class="table_image" (click)="triggerClick(field.name+'-field')" [ngClass]="{'replace-img':imageSrc[field.name]!=''}">
+    
+                                <img [src]="imageSrc[field.name]" class="img_fit" *ngIf="imageSrc[field.name]!='' " />
+                                <img src="assets/images/no-image-placeholder.png" class="img-fluid" *ngIf="imageSrc[field.name]==''" />
+                                <div class="text-replace-img" *ngIf="imageSrc[field.name]!='' ">
+                                    Replace image
+                                </div>
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" (click)="submit(mainForm)" class="btn btn-secondary mx-2">
+                        Save changes
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</section>

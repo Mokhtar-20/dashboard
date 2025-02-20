@@ -23,8 +23,14 @@ export class PostService {
     );
   }
 
-  put(url:string, id:any ,formData?: any) {
-    return this._httpClient.put<any>(this.apiURL + url + '/' + id, formData).pipe(
+  put(url:string, id:any, formData?: any) {
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    let object: any = {};
+    formData.forEach((value: any, key: any) => object[key] = value);
+    const body = JSON.stringify(object);
+    return this._httpClient.put<any>(this.apiURL + url + '/' + id, body, { headers: headers }).pipe(
       (data) => data,
       (error) => error
     );

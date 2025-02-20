@@ -11,10 +11,10 @@ export class GetService {
   constructor(private _httpClient: HttpClient) { }
 
   get(url: string): Observable<any> {
-    return this._httpClient.get(this.apiURL + url)
+    return this._httpClient.get(this.apiURL + url);
   }
 
   getSingle(url: string, id: any): Observable<any> {
-    return this._httpClient.get(this.apiURL + url + '/' + id)
+    return this._httpClient.get(this.apiURL + url + '/' + id);
   }
 }
