@@ -5,6 +5,7 @@ import { NzModalService } from 'ng-zorro-antd/modal';
 import { Subscription } from 'rxjs';
 import { ModalComponent } from 'src/app/shared/modal/modal.component';
 import { GetService } from 'src/app/utilities/services/get.service';
+import { SearchService } from 'src/app/utilities/services/search.service';
 import { tablesData } from 'src/app/utilities/shared-data/list';
 import { URLs } from 'src/app/utilities/shared-data/urls';
 
@@ -23,19 +24,30 @@ export class ListComponent implements OnInit {
   url: any;
   listOfData!: any[];
   loading = false;
+  valueSelect: any = '';
   pageIndex!: number;
   pageSize!: number;
   totalTableElms!: number;
   routeSubscription: Subscription = new Subscription();
   listSubscriptions: Subscription = new Subscription();
   totalTableSubscriptions: Subscription = new Subscription();
-  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService, private _modalService : NzModalService, private _message: NzMessageService) {
+  navbarSub: Subscription = new Subscription();
+  constructor(private _activatedRoute: ActivatedRoute, private _router: Router, private _getService: GetService, private _modalService : NzModalService, private _message: NzMessageService, private _searchService: SearchService) {
     this._activatedRoute.params.subscribe(
       (param) => {
         this.type = param['type'];
         // console.log(this.type)
       }
     );
+
+    this.navbarSub = this._searchService.getValueSelect().subscribe(valueSelect => {
+      this.valueSelect = valueSelect;
+      if (this.valueSelect != null) {
+        this.getListData(1,this.valueSelect);
+      } else {
+        this.getListData();
+      }
+    })
   }
 
   ngOnInit(): void {
@@ -64,18 +76,28 @@ export class ListComponent implements OnInit {
     }))
   }
 
-  getListData(e?:any) {
+  getListData(e?:any, search?: any) {
     this.loading = true;
     if (e) {
       this.pageIndex = e ;
     }
-    this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}`).subscribe((data) => {
-      console.log(data);
-      this.listOfData = data;
-      setTimeout(() => {
-        this.loading = false;
-      }, 500);
-    }))
+    if(search) {
+      this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}&search=${search}`).subscribe((data) => {
+        console.log(data);
+        this.listOfData = data;
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
+      }))
+    } else {
+      this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}`).subscribe((data) => {
+        console.log(data);
+        this.listOfData = data;
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
+      }))
+    }
   }
 
   deleteItem(id: any) { 

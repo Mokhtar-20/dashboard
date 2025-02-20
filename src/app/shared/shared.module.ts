@@ -5,13 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ModalComponent } from './modal/modal.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
 @NgModule({
   declarations: [
     SidenavComponent,
-    ModalComponent
+    ModalComponent,
+    HeaderComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +27,8 @@ import { ModalComponent } from './modal/modal.component';
     FormsModule,
     ReactiveFormsModule,
     SidenavComponent,
-    ModalComponent
+    ModalComponent,
+    HeaderComponent
   ]
 })
 export class SharedModule { }

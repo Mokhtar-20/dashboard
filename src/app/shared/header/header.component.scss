@@ -1,0 +1,21 @@
+@import 'src/assets/styles/variables';
+
+.navbar {
+    background: $background;
+    border-bottom: #CCCCCC35 2px solid;
+    .search-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 99;
+    }
+    .search-input {
+        border: 1px solid $darkGray;
+        border-radius: 8px;
+        color: $Sec_text_colour;
+        background-color: $white;
+        padding: 0.7rem 1rem 0.7rem 0.5rem;
+        width: 100%;
+    }
+}

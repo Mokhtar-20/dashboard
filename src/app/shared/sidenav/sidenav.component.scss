@@ -34,7 +34,7 @@
                     color: $Sec_text_colour;
                     text-decoration: none;
                     font-size: $font-18;
-                    &.active {
+                    &.active,&:hover {
                         background-color: $gray;
                     }
                 }

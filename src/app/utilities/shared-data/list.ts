@@ -9,6 +9,7 @@ export const tablesData = {
         hasBackLink: true,
         backLink: '/manage/users',
         massage: 'User deleted successfully.',
+        search: 'Search For User',
         titles:['', 'image', 'name', 'email', 'phone', 'actions',''],
         column:['sort', 'avatar', 'name', 'email', 'phone', 'editPage','delete'],
     },
