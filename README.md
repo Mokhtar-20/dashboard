@@ -26,4 +26,6 @@ password: dashboard123
 
 ## REST API 
 
-This project used [mockapi](https://mockapi.io/) 
+This project used [mockapi](https://mockapi.io/) <br>
+mockapi documentation: [mockapi/docs](https://github.com/mockapi-io/docs/wiki) <br>
+
