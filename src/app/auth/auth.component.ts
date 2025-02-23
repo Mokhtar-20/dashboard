@@ -41,7 +41,7 @@ export class AuthComponent implements OnInit {
     };
     if(form.valid) {
       this.checkOnVAlidate = this._authService.login(body);
-      console.log(this.checkOnVAlidate)
+      // console.log(this.checkOnVAlidate)
     }
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzModalService } from 'ng-zorro-antd/modal';
@@ -14,7 +14,7 @@ import { URLs } from 'src/app/utilities/shared-data/urls';
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, OnDestroy {
   type: any;
   contentTablesData: any;
   contentData: any;
@@ -84,7 +84,7 @@ export class ListComponent implements OnInit {
     }
     if(search) {
       this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}&search=${search}`).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
         this.listOfData = data;
         this.searchError = false;
         setTimeout(() => {
@@ -95,7 +95,7 @@ export class ListComponent implements OnInit {
       }))
     } else {
       this.listSubscriptions.add(this._getService.get(this.url + `?page=${this.pageIndex}&limit=${this.pageSize}`).subscribe((data) => {
-        console.log(data);
+        // console.log(data);
         this.listOfData = data;
         setTimeout(() => {
           this.loading = false;
@@ -130,5 +130,12 @@ export class ListComponent implements OnInit {
         }
       }
     )
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
+    this.listSubscriptions.unsubscribe();
+    this.totalTableSubscriptions.unsubscribe();
+    this.navbarSub.unsubscribe();
   }
 }

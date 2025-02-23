@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { ModalComponent } from './modal/modal.component';
 import { HeaderComponent } from './header/header.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { HeaderComponent } from './header/header.component';
     ZorroModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    NgxSpinnerModule
   ], 
   exports: [
     ZorroModule,
@@ -28,7 +29,8 @@ import { HeaderComponent } from './header/header.component';
     ReactiveFormsModule,
     SidenavComponent,
     ModalComponent,
-    HeaderComponent
+    HeaderComponent,
+    NgxSpinnerModule
   ]
 })
 export class SharedModule { }

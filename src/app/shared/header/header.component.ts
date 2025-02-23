@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { SearchService } from 'src/app/utilities/services/search.service';
@@ -9,7 +9,7 @@ import { tablesData } from 'src/app/utilities/shared-data/list';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   type: any;
   contentTablesData: any;
   contentData:any;
@@ -30,5 +30,9 @@ export class HeaderComponent implements OnInit {
     } else {
       this._searchService.sendValueSelect(null);
     }
+  }
+
+  ngOnDestroy(): void {
+    this.routeSubscription.unsubscribe();
   }
 }

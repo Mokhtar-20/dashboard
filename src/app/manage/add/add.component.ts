@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { URLs } from 'src/app/utilities/shared-data/urls';
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.scss']
 })
-export class AddComponent {
+export class AddComponent implements OnDestroy {
   type: any;
   contentTablesData: any;
   contentData: any;
@@ -82,8 +82,8 @@ export class AddComponent {
       reader.onload = () => {
         this.imageSrc[fieldName] = reader.result as string;
       };
-      console.log(file);
-      console.log(fileSize);
+      // console.log(file);
+      // console.log(fileSize);
     } else {
       this.imageSizeError[fieldName] = true;
     }
@@ -110,15 +110,19 @@ export class AddComponent {
         }
       }
       this.addSubscriptions = this._postService.submit(this.url, this.formData).subscribe((res)=> {
-        console.log(res);
+        // console.log(res);
         // this.spinner.hide();
         this._router.navigate([this.contentData.backLink]); 
       }, 
       (err) => {
         // this.spinner.hide();
-        console.log(err)
+        console.log(err);
         // this.backEndError = err.error.errors
       })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.addSubscriptions.unsubscribe();
   }
 }

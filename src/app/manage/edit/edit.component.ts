@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Subscription } from 'rxjs';
 import { GetService } from 'src/app/utilities/services/get.service';
 import { PostService } from 'src/app/utilities/services/post.service';
@@ -13,7 +14,7 @@ import { URLs } from 'src/app/utilities/shared-data/urls';
   templateUrl: './edit.component.html',
   styleUrls: ['./edit.component.scss']
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnInit, OnDestroy {
   type: any;
   id: any;
   contentTablesData: any;
@@ -30,7 +31,7 @@ export class EditComponent implements OnInit {
   imageSizeError: any = new Map();
   dataSubscriptions : Subscription = new Subscription();
   editSubscriptions : Subscription = new Subscription();
-  constructor(private _activatedRoute: ActivatedRoute, private _getService: GetService, private _postService: PostService, private _router: Router) {
+  constructor(private _activatedRoute: ActivatedRoute, private _getService: GetService, private _postService: PostService, private _router: Router, private _spinner: NgxSpinnerService) {
     this._activatedRoute.params.subscribe(
       (param) => {
         this.type = param['type'];
@@ -50,6 +51,7 @@ export class EditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this._spinner.show();
     setTimeout(() => {
       this.getRecordData();
     }, 500);
@@ -60,7 +62,8 @@ export class EditComponent implements OnInit {
       this.recordData = data;
       this.mainForm.patchValue(this.recordData);
       this.renderingSectionImages();
-      console.log(this.recordData)
+      // console.log(this.recordData)
+      this._spinner.hide();
     }))
   }
 
@@ -92,6 +95,12 @@ export class EditComponent implements OnInit {
       for (let fieldName in this.imageSrc) {
         this.imageSrc[fieldName] = this.recordData.avatar;
       }
+    } else if(this.recordData.image != null) {
+      for (let fieldName in this.imageSrc) {
+        this.imageSrc[fieldName] = this.recordData.image;
+      }
+    } else {
+      return;
     }
   }
 
@@ -134,12 +143,17 @@ export class EditComponent implements OnInit {
         }
       }
       this.editSubscriptions = this._postService.put(this.url, this.id,this.formData).subscribe((res) => { 
-        console.log(res);
+        // console.log(res);
         this._router.navigate([this.contentData.backLink]); 
       },
       (err) => {
         console.log(err);
       })
     }
+  }
+
+  ngOnDestroy(): void {
+    this.dataSubscriptions.unsubscribe();
+    this.editSubscriptions.unsubscribe();
   }
 }
