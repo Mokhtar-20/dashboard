@@ -8,5 +8,5 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The appli
 
 ## Login credentials
 
-email: dummy@dashboard.com
+email: dummy@dashboard.com <br>
 password: dashboard123
