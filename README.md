@@ -23,3 +23,7 @@ ngx-spinner v12.0.0
 
 email: dummy@dashboard.com <br>
 password: dashboard123
+
+## REST API 
+
+This project used [mockapi](https://mockapi.io/) 
